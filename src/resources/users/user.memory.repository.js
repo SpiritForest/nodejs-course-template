@@ -10,25 +10,29 @@ const USERS = [{
   password: "12345qwerty"
 }];
 
+// const USERS = [];
+
 const getAll = () => USERS;
 
 const addUser = (user) => {
   USERS.push(user);
   return user;
-}
+};
 
 const getById = (id) => USERS.find(user => user.id === id)
 
-const put = (id, user) => {
-  let data = getById(id);
-  
-  data = {
-    id,
-    name: user.name,
-    login: user.login,
-    password: user.password
-  }
-  return data;
-}
+const replaceData = (index, data) => {
+  USERS.splice(index, 1, data);
+};
 
-module.exports = { getAll, addUser, getById, put };
+const deleteByIndex = (index) => {
+  USERS.splice(index, 1);
+};
+
+module.exports = {
+  getAll,
+  addUser,
+  getById,
+  replaceData,
+  deleteByIndex
+};
