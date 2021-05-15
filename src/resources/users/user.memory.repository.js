@@ -14,7 +14,7 @@ const USERS = [{
 
 const getAll = () => USERS;
 
-const addUser = (user) => {
+const addData = (user) => {
   USERS.push(user);
   return user;
 };
@@ -31,7 +31,7 @@ const deleteByIndex = (index) => {
 
 module.exports = {
   getAll,
-  addUser,
+  addData,
   getById,
   replaceData,
   deleteByIndex

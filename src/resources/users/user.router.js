@@ -21,7 +21,6 @@ router.route('/:id').get((req, res) => {
     res.status(constants.HTTP.OK);
     res.setHeader('Content-Type', 'application/json');
     res.json(User.toResponse(user));
-    ;
   }
 });
 
@@ -29,7 +28,7 @@ router.route('/:id').get((req, res) => {
 router.route('/').post((req, res) => {
   const user = new User(req.body)
 
-  usersService.addUser(user);
+  usersService.addData(user);
 
   res.status(constants.HTTP.CREATED);
   res.setHeader('Content-Type', 'application/json');
@@ -39,7 +38,14 @@ router.route('/').post((req, res) => {
 // Update
 router.route('/:id').put((req, res) => {
   const { id } = req.params;
-  const user = usersService.putData(id, req.body);
+  const { name, login, password } = req.body;
+  const userData = new User({
+    id,
+    name,
+    login,
+    password
+  })
+  const user = usersService.putData(id, userData);
 
   if (user) {
     res.status(constants.HTTP.OK);
@@ -60,7 +66,6 @@ router.route('/:id').delete((req, res) => {
   } else {
     res.status(constants.HTTP.DELETED).end();
   }
-
-})
+});
 
 module.exports = router;
