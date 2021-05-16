@@ -83,9 +83,20 @@ router.route('/:boardId/tasks').get((req, res) => {
   res.json(tasks);
 });
 
+// Get Tasks by Id
+router.route('/:boardId/tasks/:taskId').get((req, res) => {
+  const { boardId, taskId } = req.params;
+  const tasks = taskService.getTaskById(boardId, taskId);
+
+  res.status(constants.HTTP.OK);
+  res.setHeader('Content-Type', 'application/json');
+  res.json(tasks);
+});
+
 // Create Tasks
 router.route('/:boardId/tasks').post((req, res) => {
-  const { title, order, description, userId, boardId, columnId } = req.body;
+  const { boardId } = req.params;
+  const { title, order, description, userId, columnId } = req.body;
   const task = new Task({
     title,
     order,
@@ -98,6 +109,27 @@ router.route('/:boardId/tasks').post((req, res) => {
   taskService.addData(task);
 
   res.status(constants.HTTP.CREATED);
+  res.setHeader('Content-Type', 'application/json');
+  res.json(task);
+});
+
+// Update Task
+router.route('/:boardId/tasks/:taskId').put((req, res) => {
+  const { boardId, taskId } = req.params;
+  const { title, order, description, userId, columnId } = req.body;
+  const task = new Task({
+    id: taskId,
+    title,
+    order,
+    description,
+    userId,
+    boardId,
+    columnId
+  });
+
+  taskService.putData(task);
+
+  res.status(constants.HTTP.OK);
   res.setHeader('Content-Type', 'application/json');
   res.json(task);
 });
