@@ -5,15 +5,15 @@ const constants = require('../utils/constants');
 
 
 // Get
-router.route('/').get((req, res) => {
-  const users = usersService.getAll();
+router.route('/').get(async (req, res) => {
+  const users = await usersService.getAll();
   res.json(users.map(User.toResponse));
 });
 
 // Get User by ID
-router.route('/:id').get((req, res) => {
+router.route('/:id').get(async (req, res) => {
   const { id } = req.params;
-  const user = usersService.getById(id);
+  const user = await usersService.getById(id);
 
   if (!user) {
     res.status(constants.HTTP.NOT_FOUND).send('User not found');
@@ -25,10 +25,10 @@ router.route('/:id').get((req, res) => {
 });
 
 // Create User
-router.route('/').post((req, res) => {
+router.route('/').post(async (req, res) => {
   const user = new User(req.body)
 
-  usersService.addData(user);
+  await usersService.addData(user);
 
   res.status(constants.HTTP.CREATED);
   res.setHeader('Content-Type', 'application/json');
@@ -36,7 +36,7 @@ router.route('/').post((req, res) => {
 });
 
 // Update
-router.route('/:id').put((req, res) => {
+router.route('/:id').put(async (req, res) => {
   const { id } = req.params;
   const { name, login, password } = req.body;
   const userData = new User({
@@ -45,7 +45,7 @@ router.route('/:id').put((req, res) => {
     login,
     password
   })
-  const user = usersService.putData(id, userData);
+  const user = await usersService.putData(id, userData);
 
   if (user) {
     res.status(constants.HTTP.OK);
@@ -57,9 +57,9 @@ router.route('/:id').put((req, res) => {
 });
 
 // Delete User
-router.route('/:id').delete((req, res) => {
+router.route('/:id').delete(async (req, res) => {
   const { id } = req.params;
-  const code = usersService.deleteData(id);
+  const code = await usersService.deleteData(id);
 
   if (code === constants.CODES.NOT_FOUND) {
     res.status(constants.HTTP.NOT_FOUND).send('User not found');

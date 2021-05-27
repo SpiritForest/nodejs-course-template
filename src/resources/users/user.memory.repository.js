@@ -12,20 +12,20 @@
 
 const USERS = [];
 
-const getAll = () => USERS;
+const getAll = async () => USERS;
 
 const addData = (user) => {
   USERS.push(user);
   return user;
 };
 
-const getById = (id) => USERS.find(user => user.id === id)
+const getById = (id) => USERS.find(user => user.id === id);
 
-const replaceData = (index, data) => {
+const replaceData = async (index, data) => {
   USERS.splice(index, 1, data);
 };
 
-const deleteByIndex = (index) => {
+const deleteByIndex = async (index) => {
   USERS.splice(index, 1);
 };
 

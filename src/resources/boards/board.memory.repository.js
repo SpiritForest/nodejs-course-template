@@ -10,18 +10,18 @@
 
 const BOARDS = [];
 
-const getAll = () => BOARDS;
+const getAll = async () => BOARDS;
 
-const addData = (board) => {
+const addData = async (board) => {
   BOARDS.push(board);
   return board;
 };
 
-const replaceData = (index, data) => {
+const replaceData = async (index, data) => {
   BOARDS.splice(index, 1, data);
 };
 
-const deleteByIndex = (index) => {
+const deleteByIndex = async (index) => {
   BOARDS.splice(index, 1);
 };
 
