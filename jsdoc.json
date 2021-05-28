@@ -1,0 +1,18 @@
+{
+  "recurseDepth": 20,
+  "source": {
+      "include": ["src/resources"],
+      "includePattern": "(repository|service).js$",
+      "excludePattern": "(node_modlues/|docs)"
+  },
+  "opts": {
+    "recurse": true,
+    "destination": "./jsdoc"
+  },
+  "sourceType": "module",
+  "plugins": ["plugins/markdown"],
+  "templates": {
+      "cleverLinks": true,
+      "monospaceLinks": true
+  }
+}
