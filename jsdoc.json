@@ -9,7 +9,7 @@
     "recurse": true,
     "destination": "./jsdoc"
   },
-  "sourceType": "module",
+  "sourceType": "module", 
   "plugins": ["plugins/markdown"],
   "templates": {
       "cleverLinks": true,
