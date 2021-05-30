@@ -5,7 +5,7 @@ import { IUser } from "../../types/user/user";
     v4: uuidv4
   } = require('uuid');
   
-  class User {
+  class User implements IUser {
     id: string;
     name: string;
     login: string;
