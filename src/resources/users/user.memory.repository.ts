@@ -1,21 +1,13 @@
+import { IUser } from "../../types/user/user";
+
+(function() {
+  
 /**
  * User Memory module
  * @module user_repository
  */
 
-// const USERS = [{
-//   id: "052b7462-458c-4a08-a6ca-d9ddae6735e1",
-//   name: "Vasya",
-//   login: "vasya@pupkin",
-//   password: "12345"
-// }, {
-//   id: "a82dfa5d-cd76-4485-be1f-b42bbc33128b",
-//   name: "Tanya",
-//   login: "tanya22",
-//   password: "12345qwerty"
-// }];
-
-const USERS = [];
+const USERS: IUser[] = [];
 
 /**
  * Returns all users
@@ -28,7 +20,7 @@ const getAll = async () => USERS;
  * @param {{id: string, name: string, login: string, password: string}} user Object with properties which represents user data
  * @returns {Promise} Promise object represents user data
  */
-const addData = (user) => {
+const addData = (user: IUser) => {
   USERS.push(user);
   return user;
 };
@@ -38,7 +30,7 @@ const addData = (user) => {
  * @param {string} id String representation of user id
  * @returns {Promise} Promise object represents user data
  */
-const getById = (id) => USERS.find(user => user.id === id);
+const getById = (id: string) => USERS.find(user => user.id === id);
 
 /**
  * Replaced user data with a new one
@@ -46,7 +38,7 @@ const getById = (id) => USERS.find(user => user.id === id);
  * @param {{id: string, name: string, login: string, password: string}} data Data which will replace the existing one
  * @returns {Promise} Promise object represents user data was replaced
  */
-const replaceData = async (index, data) => {
+const replaceData = async (index: number, data: IUser) => {
   USERS.splice(index, 1, data);
 };
 
@@ -55,7 +47,7 @@ const replaceData = async (index, data) => {
  * @param {index} index Index of user in which will be deleted
  * @returns {Promise} Promise object represents that user was deleted
  */
-const deleteByIndex = async (index) => {
+const deleteByIndex = async (index: number) => {
   USERS.splice(index, 1);
 };
 
@@ -66,3 +58,4 @@ module.exports = {
   replaceData,
   deleteByIndex
 };
+})();
