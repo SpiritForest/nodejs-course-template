@@ -6,8 +6,11 @@ const {
 
 class Column implements IColumn {
   id: string ;
+
   order: number;
+
   title: string;
+
   constructor({
     id = uuidv4(),
     order = 0,

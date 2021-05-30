@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { IUser } from '../../types/user/user';
 
 (function () {
   const router = require('express').Router();

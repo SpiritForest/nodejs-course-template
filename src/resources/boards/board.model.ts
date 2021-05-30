@@ -8,8 +8,11 @@ const {
 
 class Border {
   id: string;
+
   title: string;
+
   columns: IColumn[];
+
   constructor({
     id = uuidv4(),
     title = 'title',

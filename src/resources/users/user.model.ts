@@ -7,9 +7,13 @@ import { IUser } from "../../types/user/user";
   
   class User implements IUser {
     id: string;
+
     name: string;
+
     login: string;
+
     password: string;
+
     constructor({
       id = uuidv4(),
       name = 'USER',
