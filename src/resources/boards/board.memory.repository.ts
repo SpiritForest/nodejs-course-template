@@ -1,4 +1,8 @@
-// const BOARDS = [{
+import { IBoard } from '../../types/board/board';
+
+(function() {
+
+  // const BOARDS = [{
 //   "id": "Board 1",
 //   "title": "board 1 title",
 //   "columns": [{
@@ -13,7 +17,7 @@
  * @module board_repository
  */
 
-const BOARDS = [];
+const BOARDS: IBoard[] = [];
 
 /**
  * Returs all the boards
@@ -32,7 +36,7 @@ const getAll = async () => BOARDS;
  * @param {number} board.columns.order Board column order
  * @returns {Promise} Promise object represents board data
  */
-const addData = async (board) => {
+const addData = async (board: IBoard) => {
   BOARDS.push(board);
   return board;
 };
@@ -49,7 +53,7 @@ const addData = async (board) => {
  * @param {number} board.columns.order Board column order
  * @returns {Promise} Promise representation of result of replacing data
  */
-const replaceData = async (index, data) => {
+const replaceData = async (index: number, data: IBoard) => {
   BOARDS.splice(index, 1, data);
 };
 
@@ -58,7 +62,7 @@ const replaceData = async (index, data) => {
  * @param {number} index 
  * @returns {Promise} Promise object represents result of data deletion
  */
-const deleteByIndex = async (index) => {
+const deleteByIndex = async (index: number) => {
   BOARDS.splice(index, 1);
 };
 
@@ -68,3 +72,4 @@ module.exports = {
   replaceData,
   deleteByIndex,
 };
+})();

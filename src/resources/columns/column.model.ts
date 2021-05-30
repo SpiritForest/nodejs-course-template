@@ -1,9 +1,11 @@
+import { IColumn } from "../../types/column/column";
+
 const {
   v4: uuidv4
 } = require('uuid');
 
-class Column {
-  id: string;
+class Column implements IColumn {
+  id: string ;
   order: number;
   title: string;
   constructor({
